@@ -1,7 +1,2 @@
-streamlit==1.39.0
-litellm
-python-dotenv==1.0.0
-crewai==1.6.0
-crewai-tools==0.17.0
-langchain-groq==0.2.1
-
+streamlit
+crewai[tools]==1.6.0
