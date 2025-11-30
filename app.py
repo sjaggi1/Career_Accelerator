@@ -16,15 +16,6 @@ else:
     4. Save and redeploy
     """)
     st.stop()
-
-# Verify litellm is available
-try:
-    import litellm
-    st.sidebar.info(f"✅ LiteLLM version: {litellm.__version__}")
-except ImportError as e:
-    st.error(f"❌ LiteLLM not found: {e}")
-    st.stop()
-
 # Now import other modules AFTER setting the environment variable
 import sys
 from pathlib import Path
