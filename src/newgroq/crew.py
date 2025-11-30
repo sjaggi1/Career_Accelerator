@@ -1,4 +1,4 @@
-from crewai import Agent, Crew, Process, Task, LLM
+from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
@@ -11,45 +11,48 @@ class Newgroq():
     agents: List[BaseAgent]
     tasks: List[Task]
     
-    def get_llm(self):
-        """Get the configured Groq LLM"""
+    def get_llm_config(self):
+        """Get the LLM configuration as a dictionary"""
         api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
             raise ValueError("GROQ_API_KEY environment variable is not set!")
         
-        return LLM(
+        return {
             "model": "groq/llama-3.1-8b-instant",
             "api_key": api_key,
             "temperature": 0.3,
             "max_tokens": 900
-        )
+        }
     
     # --------------------------
     # Agents
     # --------------------------
     @agent
     def skill_gap_analyzer(self) -> Agent:
+        config = self.agents_config['skill_gap_analyzer'].copy()
+        config['llm'] = self.get_llm_config()
         return Agent(
-            config=self.agents_config['skill_gap_analyzer'],
-            llm=self.get_llm(),  # ✅ Explicitly set LLM
+            config=config,
             verbose=True,
             allow_delegation=False
         )
     
     @agent
     def learning_path_designer(self) -> Agent:
+        config = self.agents_config['learning_path_designer'].copy()
+        config['llm'] = self.get_llm_config()
         return Agent(
-            config=self.agents_config['learning_path_designer'],
-            llm=self.get_llm(),  # ✅ Explicitly set LLM
+            config=config,
             verbose=True,
             allow_delegation=False
         )
     
     @agent
     def action_planner(self) -> Agent:
+        config = self.agents_config['action_planner'].copy()
+        config['llm'] = self.get_llm_config()
         return Agent(
-            config=self.agents_config['action_planner'],
-            llm=self.get_llm(),  # ✅ Explicitly set LLM
+            config=config,
             verbose=True,
             allow_delegation=False
         )
