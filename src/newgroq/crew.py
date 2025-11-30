@@ -3,6 +3,7 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
 import os
+from litellm import completion
 
 @CrewBase
 class Newgroq():
@@ -17,9 +18,10 @@ class Newgroq():
             raise ValueError("GROQ_API_KEY environment variable is not set!")
         
         return LLM(
-            model="groq/llama-3.1-8b-instant",
-            api_key=api_key,
-            temperature=0.3
+            "model": "groq/llama-3.1-8b-instant",
+            "api_key": api_key,
+            "temperature": 0.3,
+            "max_tokens": 900
         )
     
     # --------------------------
