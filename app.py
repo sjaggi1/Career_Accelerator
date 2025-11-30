@@ -1,19 +1,22 @@
+import os
 import streamlit as st
+
+# ⚠️ CRITICAL: Set API key BEFORE any other imports
+# This must happen before importing CrewAI modules
+if "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+elif "GROQ_API_KEY" not in os.environ:
+    st.error("⚠️ GROQ_API_KEY not found. Please add it to Streamlit secrets.")
+    st.info("Go to App Settings → Secrets and add: GROQ_API_KEY = 'your-key-here'")
+    st.stop()
+
+# Now import other modules AFTER setting the environment variable
 import sys
 from pathlib import Path
 import warnings
 from datetime import datetime
 import re
 
-import os
-
-# Load API key from Streamlit secrets
-if "GROQ_API_KEY" in st.secrets:
-    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
-elif "GROQ_API_KEY" not in os.environ:
-    st.error("⚠️ GROQ_API_KEY not found. Please add it to Streamlit secrets.")
-    st.stop()
-    
 # FIX: Add the *src* folder to PYTHONPATH
 ROOT_DIR = Path(__file__).resolve().parent
 SRC_DIR = ROOT_DIR / "src"
