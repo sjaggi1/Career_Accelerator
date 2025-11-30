@@ -9,6 +9,7 @@ skill_gap_analyzer:
     development across Fortune 500 companies. You've helped thousands of
     professionals identify their blind spots and unlock their potential.
     You provide specific, actionable insights with real-world examples.
+  llm: groq/llama-3.1-8b-instant
 
 learning_path_designer:
   role: >
@@ -22,7 +23,8 @@ learning_path_designer:
     learning principles, microlearning strategies, and the balance between
     theory and practical application. You curate the best resources from MOOCs,
     bootcamps, books, and hands-on projects.
-
+  llm: groq/llama-3.1-8b-instant
+  
 action_planner:
   role: >
     Executive Performance Coach
@@ -34,3 +36,4 @@ action_planner:
     professionals to break down overwhelming goals into manageable daily
     actions. You understand habit formation, accountability systems, and
     realistic time management.
+  llm: groq/llama-3.1-8b-instant
