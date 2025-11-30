@@ -1,0 +1,23 @@
+skill_gap_analysis_task:
+  description: >
+    Give a **short skill gap analysis** for {career_goal} in {industry}.
+    List top 3 technical, 2 soft, and 2 domain skill gaps. Include key certifications.
+  expected_output: >
+    Markdown summary of top skill gaps and priorities. Keep very short (<500 tokens).
+  agent: skill_gap_analyzer
+
+learning_path_design_task:
+  description: >
+    Using skill gaps, create a **brief learning path** for {career_goal}.
+    Include courses, projects, and certifications. Consider {time_commitment} hrs/week.
+  expected_output: >
+    Short markdown roadmap with phases and key resources (<500 tokens).
+  agent: learning_path_designer
+
+action_plan_task:
+  description: >
+    Combine all outputs into a **short 30-day plan** for {career_goal}.
+    Include main daily tasks and weekly goals.
+  expected_output: >
+    Short markdown plan with key tasks and weekly checkpoints (<500 tokens).
+  agent: action_planner
