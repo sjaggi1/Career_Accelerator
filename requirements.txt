@@ -1,4 +1,5 @@
 crewai[tools]==1.6.0
-litellm>=1.30.0
-streamlit>=1.28.0
-python-dotenv
+streamlit==1.39.0
+crewai==1.6.0
+litellm==1.51.7
+python-dotenv==1.0.0
