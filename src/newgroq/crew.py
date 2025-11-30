@@ -11,7 +11,7 @@ class Newgroq():
     tasks: List[Task]
 
     def __init__(self):
-        super().__init__()
+        #super().__init__()
         # Explicitly create Groq LLM instance
         api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
