@@ -4,15 +4,25 @@ import streamlit as st
 # ⚠️ CRITICAL: Set API key BEFORE any other imports
 if "GROQ_API_KEY" in st.secrets:
     os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
-    print(f"✅ GROQ_API_KEY loaded from secrets")  # Debug line
-elif "GROQ_API_KEY" not in os.environ:
-    st.error("⚠️ GROQ_API_KEY not found. Please add it to Streamlit secrets.")
-    st.info("Go to App Settings → Secrets and add: GROQ_API_KEY = 'your-key-here'")
+    st.sidebar.success("✅ API Key loaded from secrets")
+    print("key found")
+else:
+    st.error("⚠️ GROQ_API_KEY not found in Streamlit secrets!")
+    st.info("""
+    **How to fix:**
+    1. Go to your Streamlit Cloud dashboard
+    2. Select your app → Settings → Secrets
+    3. Add: `GROQ_API_KEY = "gsk_your_actual_key"`
+    4. Save and redeploy
+    """)
     st.stop()
 
-# Verify it's actually set
-if not os.getenv("GROQ_API_KEY"):
-    st.error("❌ Failed to set GROQ_API_KEY environment variable")
+# Verify litellm is available
+try:
+    import litellm
+    st.sidebar.info(f"✅ LiteLLM version: {litellm.__version__}")
+except ImportError as e:
+    st.error(f"❌ LiteLLM not found: {e}")
     st.stop()
 
 # Now import other modules AFTER setting the environment variable
