@@ -10,6 +10,18 @@ class Newgroq():
     agents: List[BaseAgent]
     tasks: List[Task]
 
+    def __init__(self):
+        super().__init__()
+        # Explicitly create Groq LLM instance
+        api_key = os.getenv("GROQ_API_KEY")
+        if not api_key:
+            raise ValueError("GROQ_API_KEY environment variable is not set")
+        
+        self.llm = LLM(
+            model="groq/llama-3.1-8b-instant",
+            temperature=0.3,
+            api_key=api_key
+        )
     # --------------------------
     # Agents
     # --------------------------
